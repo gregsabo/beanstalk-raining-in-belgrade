@@ -1,15 +1,18 @@
 language: node_js
-
 node_js:
-  - "stable"
-
+- stable
 sudo: false
-
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 script:
-  - npm run lint
-  - npm test
-  - npm run test-node
+- npm run lint
+- npm test
+- npm run test-node
+deploy:
+  provider: heroku
+  api_key:
+    secure: sjfB43MDT/qY1hWdzS22u10GKYywGjxPRj2+uDkwlqv+wG9VQqXt5q2f6iv8WsX6EHFYmDDghiDv33d5qN8FQ2/zxmP75RF6jhZXlQWxsqvn1/T3wprOQbFePNxSK7opFwnoR5j7pemLd+CxuuxLb39jWJt1kqV+DEoAbwEmL5D0mfhTYWue3yXpvwEQxxY/nGAp4cVJM9sD64a9O0tgYT0sFUsrwtUkh2cBrAZdMGaZu33TNxTvOZb019bdZx8WIjxZchqE+uZeDwDzS5n0PlY7PPi7nO/Snz9vhJBROzvtuDGP2kAmiW2P/mjgCIjtmKZElmrND00ixMMiWsAVMP99kVY0UddGaT65NLeJxdvB2xXBWic+uOVcEGKsr8aV4F/QnNc2TqCufLW7hBSjoSn5aERc4/rLtl43zcc5vDua6EWvvamIS1Brc4/YZ0PnZOVV7VCnOkJeCV7jcbkAzrz78FjFjJteitBesAYEX7FChYuthaDIcaH9FARuBjz2Yno/DyzSO7z/a+oUPppHu+2Wk9H8f/O5qm0GM8E9Wyr7NAIQZOPEjZMRtBWkg414zCLaSylzLhALQ/ARq81UeCLbtHxNvSjzHoHNwP/MqMD6VE9m52leCMY839iRJEYKHkPD238lK4CbIHupQPmaiDyeBu/Wbm2Zj4vYhLqf8Do=
+  app: beanstalk-raining-in-belgrade
+  on:
+    repo: gregsabo/beanstalk-raining-in-belgrade
