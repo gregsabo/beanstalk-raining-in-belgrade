@@ -11,8 +11,9 @@ import routes from 'routes';
 const pretty = new PrettyError();
 const app = express();
 
-new http.Server(app);
+const server = new http.Server(app);
 app.use('/', routes);
+console.log('server is', server);
 
 app.use(session({
   secret: 'react and redux rule!!!!',
