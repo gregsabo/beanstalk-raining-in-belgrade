@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import connectData from 'helpers/connectData';
 import { isLoaded, load, chooseQuote } from 'redux/modules/raining';
 import { connect } from 'react-redux';
+import { Glyphicon } from 'react-bootstrap';
 
 function fetchData(getState, dispatch) {
   return dispatch(chooseQuote());
@@ -15,10 +16,22 @@ function fetchDataDeferred(getState, dispatch) {
 }
 
 function renderRaining(isRaining) {
+  let glyph = null;
+  let text = null;
+
   if (isRaining) {
-    return <h1>It is raining in Belgrade.</h1>;
+    glyph = 'tint';
+    text = 'It is raining in Belgrade.';
+  } else {
+    glyph = 'picture';
+    text = 'The skies are clear in Belgrade.';
   }
-  return <h1>The skies are clear in Belgrade.</h1>;
+  return (<div>
+    <h1>
+      <Glyphicon glyph={glyph} />
+    </h1>
+    <h1>{text}</h1>
+  </div>);
 }
 
 @connectData(fetchData, fetchDataDeferred)
