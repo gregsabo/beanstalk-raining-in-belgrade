@@ -4,6 +4,7 @@ import connectData from 'helpers/connectData';
 import { isLoaded, load, chooseQuote } from 'redux/modules/raining';
 import { connect } from 'react-redux';
 import { Glyphicon } from 'react-bootstrap';
+import { Motion, spring } from 'react-motion';
 
 function fetchData(getState, dispatch) {
   return dispatch(chooseQuote());
@@ -49,9 +50,19 @@ export default class Home extends Component {
       <div>
         <Helmet title="Home"/>
         {renderRaining(this.props.isRaining)}
-        <blockquote>
-          {this.props.quote}
-        </blockquote>
+        <Motion defaultStyle={{
+          paddingLeft: 40,
+          opacity: 0,
+        }} style={{
+          paddingLeft: spring(21),
+          opacity: 1,
+        }}>
+          {style => {
+            return (<blockquote style={style}>
+              {this.props.quote}
+            </blockquote>);
+          }}
+        </Motion>
       </div>
     );
   }

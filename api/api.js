@@ -13,7 +13,7 @@ const app = express();
 
 const server = new http.Server(app);
 app.use('/', routes);
-console.log('server is', server);
+console.log('server is', server.domain);
 
 app.use(session({
   secret: 'react and redux rule!!!!',
